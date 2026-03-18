@@ -2,9 +2,9 @@
   <main>
     <div class="login-container">
       <div class="login-main">
-        <div>
+        <div class="login-main__content">
           <div class="login-brand mb-5">
-            <login-company-logo width="90px" :aria-label="altLogo" />
+            <login-company-logo class="login-brand__logo" :aria-label="altLogo" />
           </div>
           <h1 v-if="customizableGuiName" class="h3 mb-5">
             {{ customizableGuiName }}
@@ -17,10 +17,7 @@
           <!-- Add Secondary brand logo if needed -->
         </div>
         <div class="login-aside__logo-bmc">
-          <built-on-openbmc-logo
-            style="width: auto; height: 60px"
-            aria-label="Built on OpenBMC"
-          />
+          <datenbmc-logo class="login-aside__logo" aria-label="DatenBMC" />
         </div>
       </div>
     </div>
@@ -28,18 +25,17 @@
 </template>
 
 <script>
-import LoginCompanyLogo from '@/assets/images/login-company-logo.svg?component';
-import BuiltOnOpenbmcLogo from '@/assets/images/built-on-openbmc-logo.svg?component';
+import DatenbmcLogo from '@/assets/images/datenbmc-logo.svg?component';
 
 export default {
   name: 'LoginLayout',
   components: {
-    LoginCompanyLogo,
-    BuiltOnOpenbmcLogo,
+    LoginCompanyLogo: DatenbmcLogo,
+    DatenbmcLogo,
   },
   data() {
     return {
-      altLogo: import.meta.env.VITE_COMPANY_NAME || 'OpenBMC',
+      altLogo: import.meta.env.VITE_COMPANY_NAME || 'DatenBMC',
       customizableGuiName: import.meta.env.VITE_GUI_NAME || '',
     };
   },
@@ -78,8 +74,40 @@ export default {
   }
 }
 
+.login-main__content {
+  width: min(100%, 420px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacer * 1.5;
+  position: relative;
+  z-index: 1;
+}
+
+.login-brand {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 0 !important;
+  flex: 0 0 auto;
+}
+
+.login-brand__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+:deep(.login-brand__logo svg) {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
 // Reach into the route component root element
 :deep(.login-form) {
+  width: 100%;
+
   @include media-breakpoint-up('md') {
     max-width: 360px;
   }
@@ -111,5 +139,24 @@ export default {
     margin-inline-start: $spacer * 1.5;
     vertical-align: middle;
   }
+}
+
+.login-aside__logo-bmc {
+  width: 100%;
+  max-width: 260px;
+  flex: 0 0 auto;
+}
+
+.login-aside__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+:deep(.login-aside__logo svg) {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
 }
 </style>

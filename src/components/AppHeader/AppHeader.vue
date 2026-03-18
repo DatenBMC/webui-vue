@@ -35,7 +35,7 @@
             to="/"
             data-test-id="appHeader-container-overview"
           >
-            <logo-header class="header-logo" :aria-label="altLogo" />
+            <datenbmc-logo class="header-logo" :aria-label="altLogo" />
           </b-navbar-brand>
           <div v-if="isNavTagPresent" :key="routerKey" class="ps-2 nav-tags">
             <span>|</span>
@@ -111,7 +111,7 @@ import IconMenu from '@carbon/icons-vue/es/menu/20';
 import IconRenew from '@carbon/icons-vue/es/renew/20';
 import StatusIcon from '@/components/Global/StatusIcon';
 import LoadingBar from '@/components/Global/LoadingBar';
-import LogoHeader from '@/assets/images/logo-header.svg?component';
+import DatenbmcLogo from '@/assets/images/datenbmc-logo.svg?component';
 import { mapState } from 'vuex';
 import i18n from '@/i18n';
 import eventBus from '@/eventBus';
@@ -125,7 +125,7 @@ export default {
     IconRenew,
     StatusIcon,
     LoadingBar,
-    LogoHeader,
+    DatenbmcLogo,
   },
   mixins: [BVToastMixin],
   props: {
@@ -138,7 +138,7 @@ export default {
   data() {
     return {
       isNavigationOpen: false,
-      altLogo: import.meta.env.VITE_COMPANY_NAME || 'Built on OpenBMC',
+      altLogo: import.meta.env.VITE_COMPANY_NAME || 'DatenBMC',
     };
   },
   computed: {
